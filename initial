@@ -1,0 +1,10 @@
+create table machine
+(
+    id bigserial not null
+        constraint customers_pk
+            primary key,
+    time date not null,
+    drink varchar,
+    volume bigint,
+    sugar bigint
+);
