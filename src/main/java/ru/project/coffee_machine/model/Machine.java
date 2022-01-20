@@ -14,7 +14,7 @@ public class Machine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "time")
     private LocalDate time;
@@ -23,10 +23,10 @@ public class Machine {
     private String drink;
 
     @Column(name = "volume")
-    private long volume;
+    private Long volume;
 
     @Column(name = "sugar")
-    private long sugar;
+    private Long sugar;
 
     public Machine() {
         super();
