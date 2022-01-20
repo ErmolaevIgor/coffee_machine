@@ -1,4 +1,4 @@
-package ru.project.coffee_machine;
+package ru.project.coffeemachine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

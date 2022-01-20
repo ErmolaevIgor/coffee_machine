@@ -1,4 +1,4 @@
-package ru.project.coffee_machine;
+package ru.project.coffeemachine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

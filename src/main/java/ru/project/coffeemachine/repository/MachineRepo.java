@@ -1,7 +1,7 @@
-package ru.project.coffee_machine.repository;
+package ru.project.coffeemachine.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.project.coffee_machine.model.Machine;
+import ru.project.coffeemachine.model.Machine;
 
 public interface MachineRepo extends JpaRepository<Machine, Long> {
 }
