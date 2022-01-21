@@ -41,11 +41,11 @@ public class Machine {
 
     @Override
     public String toString() {
-        return "CoffeeMachine: { "  +
-                "drink = " + drink + "\n" +
-                ", volume = " + volume + "\n" +
-                ", sugar = " + sugar + "\n" +
-                ", date = " + date + "\n" +
-                " } ";
+        return "CoffeeMachine{" +
+                "date='" + date + '\'' +
+                "drink='" + drink + '\'' +
+                "volume='" + volume + '\'' +
+                ", sugar='" + sugar +
+                '}';
     }
 }

@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.project.coffeemachine.model.Machine;
 import ru.project.coffeemachine.service.MachineService;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @RestController
