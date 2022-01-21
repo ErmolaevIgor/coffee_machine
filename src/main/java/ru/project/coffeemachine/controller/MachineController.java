@@ -18,7 +18,7 @@ public class MachineController {
         this.machineService = machineService;
     }
 
-    @GetMapping("/show_coffee_choice")
+    @GetMapping("/show-coffee-choice")
     public String findAll() {
         return machineService.findAll().toString();
     }
@@ -30,7 +30,7 @@ public class MachineController {
     {
         Machine machine = new Machine(drink, volume, sugar, LocalDate.now());
         machineService.saveChoice(machine);
-        return "redirect:http://localhost:8080/greeting/show_coffee_choice";
+        return "redirect:http://localhost:8080/greeting/show-coffee-choice";
     }
 
 }
