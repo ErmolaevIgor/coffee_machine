@@ -5,6 +5,6 @@ create table machine
             primary key,
     date date not null,
     drink varchar,
-    volume bigint,
+    volume float8,
     sugar bigint
 );

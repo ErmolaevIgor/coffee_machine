@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.project.coffeemachine.model.Machine;
 import ru.project.coffeemachine.service.MachineService;
 
-import java.time.LocalDate;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/greeting")
@@ -18,19 +18,28 @@ public class MachineController {
         this.machineService = machineService;
     }
 
-    @GetMapping("/show-coffee-choice")
+
+
+    @GetMapping("/choice/drink={drink}/volume={volume}/sugar={sugar}")
+    public String saveChoice (@PathVariable("drink") String drink,
+                              @PathVariable("volume") Double volume,
+                              @PathVariable("sugar") Long sugar) {
+        return machineService.saveChoice(drink, volume, sugar);
+    }
+
+    @GetMapping("/show-id={id}")
+    public Optional<Machine> findById(@PathVariable("id") Long id) {
+        return machineService.findById(id);
+    }
+
+    @GetMapping("/show-all")
     public String findAll() {
         return machineService.findAll().toString();
     }
 
-    @GetMapping("/choice/{drink}/{volume}/{sugar}")
-    public String saveChoice (@PathVariable("drink") String drink,
-                              @PathVariable("volume") Long volume,
-                              @PathVariable("sugar") Long sugar)
-    {
-        Machine machine = new Machine(drink, volume, sugar, LocalDate.now());
-        machineService.saveChoice(machine);
-        return "redirect:http://localhost:8080/greeting/show-coffee-choice";
+    @GetMapping("/delete-id={id}")
+    public void deleteById(@PathVariable("id") Long id) {
+        machineService.deleteById(id);
     }
 
 }

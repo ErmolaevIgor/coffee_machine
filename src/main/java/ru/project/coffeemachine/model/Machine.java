@@ -23,7 +23,7 @@ public class Machine {
     private String drink;
 
     @Column(name = "volume")
-    private Long volume;
+    private Double volume;
 
     @Column(name = "sugar")
     private Long sugar;
@@ -32,7 +32,7 @@ public class Machine {
         super();
     }
 
-    public Machine(String drink, Long volume, Long sugar, LocalDate date) {
+    public Machine(String drink, Double volume, Long sugar, LocalDate date) {
         this.drink = drink;
         this.volume = volume;
         this.sugar = sugar;
@@ -42,6 +42,7 @@ public class Machine {
     @Override
     public String toString() {
         return "CoffeeMachine{" +
+                "id='" + id + '\'' +
                 "date='" + date + '\'' +
                 "drink='" + drink + '\'' +
                 "volume='" + volume + '\'' +
