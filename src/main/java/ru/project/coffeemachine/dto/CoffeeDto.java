@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoffeeDto {
+
+    private Long id;
     private CoffeeType coffeeType;
     private String drink;
     private Long volume;
@@ -19,6 +21,8 @@ public class CoffeeDto {
     private LocalDateTime dateTime;
 
     public CoffeeDto(Machine machine) {
+
+        this.id = machine.getId();
         this.coffeeType = machine.getCoffeeType();
         this.drink = machine.getDrink();
         this.sugar = machine.getSugar();

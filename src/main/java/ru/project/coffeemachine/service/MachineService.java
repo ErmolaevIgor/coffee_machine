@@ -11,14 +11,14 @@ import ru.project.coffeemachine.model.Machine;
 import ru.project.coffeemachine.repository.MachineRepo;
 import ru.project.coffeemachine.util.MachineConverter;
 
-import javax.crypto.Mac;
+import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional//(readOnly = true)
+@Transactional(readOnly = true)
 public class MachineService {
 
     private final MachineRepo machineRepo;
@@ -36,25 +36,30 @@ public class MachineService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    public Optional<Machine> findById(Long id) {
-        return machineRepo.findById(id);
+    public CoffeeDto findById(Long id) {
+        return machineRepo.findById(id)
+                .map(CoffeeDto::new)
+                .orElseThrow(
+                        () -> new EntityNotFoundException(
+                                String.format("Сущность класса %s с данным id (%s) не найдена!", Machine.class, id)
+                        ));
     }
 
+    @Transactional
     public void deleteById(Long id) {
         machineRepo.deleteById(id);
     }
 
-    public void update(CoffeeDto dto, Long id) {
-        machineRepo.findById(id).map(machine -> {
+    @Transactional
+    public void update(CoffeeDto dto) {
+        machineRepo.findById(dto.getId()).map(machine -> {
             machine.setCoffeeType(dto.getCoffeeType());
             machine.setDrink(dto.getDrink());
             machine.setVolume(dto.getVolume());
             machine.setSugar(dto.getSugar());
-            machine.setDate(dto.getDateTime());
+            machine.setDate(LocalDateTime.now());
             return machineRepo.save(machine);
 
-        }).orElseGet(() -> {
-            return machineRepo.save(MachineConverter.convertCoffeeToMachine(dto));
-        });
+        }).orElseGet(() -> machineRepo.save(MachineConverter.convertCoffeeToMachine(dto)));
     }
 }

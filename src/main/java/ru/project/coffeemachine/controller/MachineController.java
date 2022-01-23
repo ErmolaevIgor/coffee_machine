@@ -5,11 +5,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.project.coffeemachine.dto.CoffeeDto;
-import ru.project.coffeemachine.model.Machine;
 import ru.project.coffeemachine.service.MachineService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,7 +27,7 @@ public class MachineController {
     }
 
     @GetMapping("/find-by-id")
-    public Optional<Machine> findById(Long id) {
+    public CoffeeDto findById(Long id) {
         return machineService.findById(id);
     }
 
@@ -39,8 +37,8 @@ public class MachineController {
     }
 
     @PutMapping("/update")
-    public void update(@RequestBody CoffeeDto dto, Long id) {
-        machineService.update(dto, id);
+    public void update(@RequestBody CoffeeDto dto) {
+        machineService.update(dto);
     }
 
 }
