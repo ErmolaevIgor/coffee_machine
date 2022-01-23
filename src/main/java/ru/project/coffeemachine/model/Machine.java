@@ -1,15 +1,14 @@
 package ru.project.coffeemachine.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import ru.project.coffeemachine.enums.CoffeeType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@Getter
-@Setter
 @Entity
-@Table(name = "machine")
+@Data
+@Table(name = "machine", schema = "coffee_machine")
 public class Machine {
 
     @Id
@@ -17,36 +16,19 @@ public class Machine {
     private Long id;
 
     @Column(name = "date")
-    private LocalDate date;
+    private LocalDateTime date;
 
     @Column(name = "drink")
     private String drink;
 
     @Column(name = "volume")
-    private Double volume;
+    private Long volume;
 
     @Column(name = "sugar")
     private Long sugar;
 
-    public Machine() {
-        super();
-    }
+    @Column(name = "coffee_type")
+    @Enumerated(EnumType.STRING)
+    private CoffeeType coffeeType;
 
-    public Machine(String drink, Double volume, Long sugar, LocalDate date) {
-        this.drink = drink;
-        this.volume = volume;
-        this.sugar = sugar;
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "CoffeeMachine{" +
-                "id='" + id + '\'' +
-                "date='" + date + '\'' +
-                "drink='" + drink + '\'' +
-                "volume='" + volume + '\'' +
-                ", sugar='" + sugar +
-                '}';
-    }
 }
