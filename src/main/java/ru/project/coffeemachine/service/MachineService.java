@@ -11,6 +11,7 @@ import ru.project.coffeemachine.model.Machine;
 import ru.project.coffeemachine.repository.MachineRepo;
 import ru.project.coffeemachine.util.MachineConverter;
 
+import javax.crypto.Mac;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,6 +45,16 @@ public class MachineService {
     }
 
     public void update(CoffeeDto dto, Long id) {
+        machineRepo.findById(id).map(machine -> {
+            machine.setCoffeeType(dto.getCoffeeType());
+            machine.setDrink(dto.getDrink());
+            machine.setVolume(dto.getVolume());
+            machine.setSugar(dto.getSugar());
+            machine.setDate(dto.getDateTime());
+            return machineRepo.save(machine);
 
+        }).orElseGet(() -> {
+            return machineRepo.save(MachineConverter.convertCoffeeToMachine(dto));
+        });
     }
 }
